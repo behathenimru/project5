@@ -14,7 +14,7 @@ class Login:
         if choose_login == 1:
             if self.username == list_students["username"]:
                 if self.password == list_students["password"]:
-                    access = " successful "
+                    access_student = " successful "
                     return " Access successful "
             access_student = " denied "
             return " Access denied "
@@ -22,7 +22,7 @@ class Login:
         if choose_login == 2:
             if self.username == operator_info["username"]:
                 if self.password == operator_info["password"]:
-                    access = " successful "
+                    access_operator = " successful "
                     return " Access successful "
             access_operator = " denied "
             return " Access denied "
