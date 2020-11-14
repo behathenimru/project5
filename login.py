@@ -16,7 +16,7 @@ class Login:
                 if self.password == list_students["password"]:
                     access = " successful "
                     return " Access successful "
-            access = " denied "
+            access_student = " denied "
             return " Access denied "
 
         if choose_login == 2:
@@ -24,8 +24,10 @@ class Login:
                 if self.password == operator_info["password"]:
                     access = " successful "
                     return " Access successful "
-            access = " denied "
+            access_operator = " denied "
             return " Access denied "
+
+        return " sth went wrong! "
 
 
 
