@@ -1,5 +1,8 @@
 import csv
 import random
+import os
+os.remove("studen_user_pass.csv")
+
 with open('studen_user_pass.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(["user", "password","hash(pass)","credit","saturday","sunday","monday",\
