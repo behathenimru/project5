@@ -16,7 +16,6 @@ class Login:
         with open('studen_user_pass.csv', 'r') as csv_file :
             reader = csv.reader(csv_file)
             names_list = next(reader)       #change reader.next() to next(reader) by narges
-            #print(names_list)
             data = pd.read_csv('studen_user_pass.csv', names=names_list)
             username_list = data.user.tolist()
 
