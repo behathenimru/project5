@@ -1,16 +1,17 @@
 import csv
 import logging
-
 import pandas as pd
 
 
 class Student:
-    """ It is Student class. It gets file of students info (file contents: user number, password, credit, weekly food reservation),
+    """ It is Student class. It gets file of students info (file contents: user number, password,hash, credit, weekly food reservation),
     login student row number from the "students" file, and food file(file contents: food menu for a week).
     by this class student(user) can charge his credit and reserves food for a week.
     It subtracts food cost from user credit and report the balance condition.
     This class updates students info file after weekly reservation.
     also makes a file for student to report list of food reservation and his credit"""
+    logging.basicConfig(format="""%(message)s \n %(asctime)s""", datefmt='%d-%b-%y , %H:%M:%S', level=logging.INFO)
+    logging.basicConfig(format='%(message)s', level=logging.ERROR)
     """ This class contains """
 
     def __init__(self, student_row, student_file, food_file):
@@ -49,6 +50,9 @@ class Student:
                 """ it is a loop to read food file rows then reserves food"""
                 food_order_dict = {}  # dict of each ordered food (dict key) and its cost(dict value)
                 if food_check == "ERROR":
+                    self.student_credit = init_credit
+                    self.student_info[self.student_row][
+                        3] = self.student_credit  # reset the credit to initial credit(befor reservation)
                     break
                 if line_count == 0:  # doesn't read the first line of the food file
                     line_count += 1
@@ -68,36 +72,38 @@ class Student:
                             elif food_order == "1":  # choose first suggestion
                                 food_order = row_r[1]  # replace food number with food name as food order
                                 if self.student_credit < int(row_r[2]):
-                                    self.student_credit = init_credit
                                     food_check = "ERROR"
-                                    logging.basicConfig(format='ERROR : %(message)s', level=logging.ERROR)
-                                    logging.error(" your balance is insufficient.")
+                                    logging.error("""ERROR : your balance is insufficient. Reservation is failed.""")
                                 else:
                                     self.student_credit -= int(row_r[2])  # subtract food cost from balance
                                     food_check = 200  # change while condition to exit from While loop
                                 food_order_dict[food_order] = int(row_r[2])
+                                # logging.info("""\n Food is reserved.""")
                                 # adjust key and value of "food_order_dict" dictionary with name of ordered food and its cost from their cells in food file
+
                             elif food_order == "2":  # choose second suggestion
                                 food_order = row_r[3]  # replace food number with food name as food order
                                 if self.student_credit < int(row_r[2]):
-                                    self.student_credit = init_credit
                                     food_check = "ERROR"
-                                    logging.basicConfig(format='ERROR : %(message)s', level=logging.ERROR)
-                                    logging.error(" your balance is insufficient.")
+                                    logging.error("""ERROR : your balance is insufficient. Reservation is failed.""")
                                 else:
                                     self.student_credit -= int(row_r[2])  # subtract food cost from balance
                                     food_check = 200  # change while condition to exit from While loop
                                 food_order_dict[food_order] = int(row_r[4])
+                                # logging.info("""\n Food is reserved.""")
                                 # adjust key and value of "food_order_dict" dictionary with name of ordered food and its cost from their cells in food file
 
                         else:
                             # report to student to choose correct order
                             print("please enter correct number")
                             # logging.warning('please enter correct number')
-                list_of_food_order.append(
-                    food_order_dict)  # append dict of food and it cost to the list of "list_of_food_order"
-                self.student_info[self.student_row][
-                    3] = self.student_credit  # update student credit after each reservation
+                if food_check == "ERROR":
+                    list_of_food_order = []
+                else:
+                    list_of_food_order.append(
+                        food_order_dict)  # append dict of food and it cost to the list of "list_of_food_order"
+                    self.student_info[self.student_row][
+                        3] = self.student_credit  # update student credit after each reservation
             return list_of_food_order  # use this list in "save_food_reservation" method to save ordered food in "students" file for operator
             # and for student to show his food reservation result
 
@@ -118,23 +124,24 @@ class Student:
                 # update the student row in "students" file
                 csv_writer = csv.writer(new_file)
                 csv_writer.writerows(self.student_info)
-
-            logging.basicConfig(format="""%(message)s 
-%(asctime)s""", datefmt='%d-%b-%y , %H:%M:%S', level=logging.INFO)
-            logging.info("""Balance is charged.""")  # report INFO massage for updating the student credit
+            logging.info('Balance is charged.')  # report INFO massage for updating the student credit
 
     def save_food_reservation(self, list_of_food_order):
         """ this method save student food reservation in students file for operator
         it get "list_of_food_order" list that is made in "food_reservation" method
         then save food names in related cell of each day in the student row"""
-        for i in range(len(list_of_food_order)):
-            """ the loop for move in "list_of_food_order" list and set the food name it their cells"""
-            if i == 0:
-                pass
-            else:
-                for food_name in list_of_food_order[i].keys():
-                    # set the food name from the key of "food_order_dict" in "list_of_food_order" list
-                    self.student_info[self.student_row][i + 3] = food_name
+        if len(list_of_food_order) == 0:
+            for i in range(4, 11):
+                self.student_info[self.student_row][i] = ""
+        else:
+            for i in range(len(list_of_food_order)):
+                """ the loop for move in "list_of_food_order" list and set the food name it their cells"""
+                if i == 0:
+                    pass
+                else:
+                    for food_name in list_of_food_order[i].keys():
+                        # set the food name from the key of "food_order_dict" in "list_of_food_order" list
+                        self.student_info[self.student_row][i + 3] = food_name
 
         with open(self.student_file, 'w', newline='') as new_file:
             # update "students" file after student food reservation is finished for a week
@@ -144,26 +151,13 @@ class Student:
 
     def week_food_info_file(self):
         """ In this method save a file for student to report his food reservation for a week"""
-
-        logging.basicConfig(filename='reservation_result.log', filemode='w', format="""%(message)s 
-
-reservation time: %(asctime)s""", datefmt='%d-%b-%y , %H:%M:%S', level=logging.INFO)
-        logging.info("""Your reservation is done.
-
-Saterday:{}
-Sunday:{}
-Monday:{}
-Tuesday:{}
-Wendsday:{}
-Thursday:{}
-Friday:{}
-your Balance:{}
-""".format(self.student_info[self.student_row][4], self.student_info[self.student_row][5],
-           self.student_info[self.student_row][5]
-           , self.student_info[self.student_row][6], self.student_info[self.student_row][7],
-           self.student_info[self.student_row][8]
-           , self.student_info[self.student_row][9], self.student_info[self.student_row][10],
-           self.student_info[self.student_row][3]))
+        with open("food_reservation_for_student.csv", 'w') as file_for_student:
+            day_list = ["Saturday", "Sunday", "Monday", "Tuesday", "Wendsday", "Thursday", "Friday"]
+            write_file = csv.writer(file_for_student)
+            write_file.writerow(["days", "food"])
+            for i in range(len(self.student_info[self.student_row]) - 4):
+                write_file.writerow([day_list[i], self.student_info[self.student_row][i + 4]])
+        logging.info("Your reservation is done")
 
     def student_Balance(self):
         """ this method report student balance
