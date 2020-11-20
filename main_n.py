@@ -3,6 +3,7 @@ from student_class3 import Student
 from operator_class_n import Operator
 import pandas as pd
 import csv
+import logging
 
 
 
@@ -26,10 +27,10 @@ def Operator_log_foodlist():
             count += 1
             print("Access denied\n Wrong username")
 #operator_run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-obj3 = Operator_log_foodlist()
-with open('food_list.csv', 'r') as foods:
-     food_reader = pd.read_csv(foods)
-     print(food_reader)
+# obj3 = Operator_log_foodlist()
+# with open('food_list.csv', 'r') as foods:
+#      food_reader = pd.read_csv(foods)
+#      print(food_reader)
 
 
 
@@ -53,7 +54,7 @@ def Student_Log():
         elif str(obj_login) == 'Access denied\n No username found':
             print('Access denied\n No username found')
             count += 1
-    print("you have tried three times\nyour chance for login finished")
+    logging.info('This is an info message')
 
 
 #student run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
