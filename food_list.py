@@ -18,4 +18,3 @@ def Food_list():
         writer.writerow(["Friday", input("enter a food number one for Friday:"), input("enter a price:") \
                             , input("enter a food number two for Friday:"), input("enter a price:")])
         
-Food_list()
