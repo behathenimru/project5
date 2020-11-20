@@ -25,12 +25,11 @@ def Operator_log_foodlist():
         elif str(obj_opera) == "operator user_name is wrong":
             count += 1
             print("Access denied\n Wrong username")
-
 #operator_run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-obj3 = Operator_log_foodlist()
-with open('food_list.csv', 'r') as foods:
-     food_reader = pd.read_csv(foods)
-     print(food_reader)
+# obj3 = Operator_log_foodlist()
+# with open('food_list.csv', 'r') as foods:
+#      food_reader = pd.read_csv(foods)
+#      print(food_reader)
 
 
 
@@ -49,7 +48,7 @@ def Student_Log():
             count += 3
             return obj_login
         elif str(obj_login) == 'Access denied\n Wrong password':
-            print("Access denied\n Wrong password")
+            print('Access denied\n Wrong password')
             count += 1
         elif str(obj_login) == 'Access denied\n No username found':
             print('Access denied\n No username found')
@@ -64,9 +63,11 @@ def Student_Log():
 # "student" is a sample that show the below code is worked correctly
 # thanks to you to fix login part and match it to below code
 
-student= Login(username="9910014", password="&10014@")
+# student= Login(username="9910012", password="o10012i")
+# student= Login(input("user:"),input("pass:"))
 # attention: stu is abbreviation of student
-stu_row_num=student.login()
+# stu_row_num=student.login()
+stu_row_num=Student_Log()
 stu_login= Student(student_row=stu_row_num,student_file="studen_user_pass.csv",food_file="food_list.csv")
 user_exit="no"
 while user_exit=="no":
@@ -125,3 +126,4 @@ while user_exit=="no":
             user_exit = "no"
     elif student_request=="4":
         user_exit = "exit"
+        print("user exit")

@@ -34,9 +34,9 @@ class Login:
                             return row_count+2  #it should add with 2(changed by maryam)
 
                             #return ' Access successful '
-                        return ' Access denied\n Wrong password'
+                        return 'Access denied\n Wrong password'
 
-            return ' Access denied\n No username found '
+            return 'Access denied\n No username found'
 
 
-# print(Login("9910018" , "c10018l").login())
+# print(Login("9910012" , "o10012i").login())
