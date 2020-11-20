@@ -28,7 +28,7 @@ class Login:
                         str_hash_user = self.password
                         hash_object_user = hashlib.md5(str_hash_user.encode())
                         self.password=hash_object_user.hexdigest()
-                        return self.password , row[2]
+                        #return self.password , row[2]
                         if self.password == row[2] :
                             return row_count+2  #it should add with 2(changed by maryam)
                             #return ' Access successful '
@@ -39,4 +39,4 @@ class Login:
             return ' Access denied\n No username found'
 
 
-print(Login("9910012" , "$10012g").login())
+#print(Login("9910012" , "$10012g").login())
