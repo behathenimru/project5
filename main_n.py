@@ -5,33 +5,33 @@ import pandas as pd
 import csv
 
 
-
-"""def operator_log_foodlist(): operator will login and if his login was successfull he will make food list for one week.
-operator have three time chance to enter correct user and pass also"""
-
-def Operator_log_foodlist():
-    count = 0
-    # return_count=100 #for returning of function
-    while count < 3:
-        obj2 = Operator('undertaking_user_pass.csv')
-        obj_opera = obj2.Operator_Login(input("please enter opera username:"), input("please enter opera password:"))
-        if str(obj_opera) == "operator login was succesful":
-            count += 3
-            print("login was succesful")
-            obj2.Food_list()
-        elif str(obj_opera) == "operator passeord is wrong":
-            count += 1
-            print("Access denied\n Wrong password")
-        elif str(obj_opera) == "operator user_name is wrong":
-            count += 1
-            print("Access denied\n Wrong username")
-
-#operator_run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-obj3 = Operator_log_foodlist()
-with open('food_list.csv', 'r') as foods:
-     food_reader = pd.read_csv(foods)
-     print(food_reader)
-
+#
+# """def operator_log_foodlist(): operator will login and if his login was successfull he will make food list for one week.
+# operator have three time chance to enter correct user and pass also"""
+#
+# def Operator_log_foodlist():
+#     count = 0
+#     # return_count=100 #for returning of function
+#     while count < 3:
+#         obj2 = Operator('undertaking_user_pass.csv')
+#         obj_opera = obj2.Operator_Login(input("please enter opera username:"), input("please enter opera password:"))
+#         if str(obj_opera) == "operator login was succesful":
+#             count += 3
+#             print("login was succesful")
+#             obj2.Food_list()
+#         elif str(obj_opera) == "operator passeord is wrong":
+#             count += 1
+#             print("Access denied\n Wrong password")
+#         elif str(obj_opera) == "operator user_name is wrong":
+#             count += 1
+#             print("Access denied\n Wrong username")
+#
+# #operator_run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# obj3 = Operator_log_foodlist()
+# with open('food_list.csv', 'r') as foods:
+#      food_reader = pd.read_csv(foods)
+#      print(food_reader)
+#
 
 
 #_______________________________________________________________________________________________________
@@ -58,15 +58,16 @@ def Student_Log():
 
 
 #student run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-# obj1=Student_Log()
+obj1=Student_Log()
+# print(obj1)
 #!!!!!!!!!!!!!!!!  attention !!!!!!!!!!!!!!!!!
 # the log in pat of student is not completed
 # "student" is a sample that show the below code is worked correctly
 # thanks to you to fix login part and match it to below code
 
-student= Login(username="9910014", password="&10014@")
-# attention: stu is abbreviation of student
-stu_row_num=student.login()
+#student= Login(username="9910014", password="r10014@")
+#attention: stu is abbreviation of student
+stu_row_num=obj1
 stu_login= Student(student_row=stu_row_num,student_file="studen_user_pass.csv",food_file="food_list.csv")
 user_exit="no"
 while user_exit=="no":
@@ -91,6 +92,7 @@ while user_exit=="no":
         charge_amount=int(input("please enter charging amount:"))
         stu_login = Student(student_row=stu_row_num, student_file="studen_user_pass.csv", food_file="food_list.csv")
         print(stu_login.credit_increment(charging=charge_amount))
+        stu_login = Student(student_row=stu_row_num, student_file="studen_user_pass.csv", food_file="food_list.csv")
         stu_new_credit = stu_login.student_Balance()
         print(stu_new_credit)
         user_exit = input("a) back to menu"
