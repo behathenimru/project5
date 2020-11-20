@@ -74,7 +74,7 @@ if type(obj1)==int: #it is user login permission condition
         student_request=input("Please enter your request number:") # get user request number
         if student_request=="0":
             stu_login = Student(student_row=stu_row_num, student_file="studen_user_pass.csv", food_file="food_list.csv")
-            stu_init_credit=stu_login.student_Balance() # show the balance info by call student_Balance method of Student class
+            stu_init_credit=stu_login.student_Balance() # shows the balance info by call student_Balance method of Student class
             print(stu_init_credit)
             user_exit = input("a) back to menu"
                               "\n"
