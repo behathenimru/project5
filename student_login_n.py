@@ -27,15 +27,16 @@ class Login:
                     elif self.username == row[0] :
                         str_hash_user = self.password
                         hash_object_user = hashlib.md5(str_hash_user.encode())
-                        self.password=hash_object_user.hexdigest()
-                        if self.password == row[2] :
+                        # print(2,"row[1]",row[1])
+                        # print(2,"self.password",self.password)
+                        #self.password=hash_object_user.hexdigest()
+                        if self.password == row[1] :
                             return row_count+2  #it should add with 2(changed by maryam)
+
                             #return ' Access successful '
+                        return ' Access denied\n Wrong password'
 
-                        return 'Access denied\n Wrong password'
-
-
-            return 'Access denied\n No username found'
+            return ' Access denied\n No username found '
 
 
-# print(Login("9910012" , "z10012m").login())
+# print(Login("9910018" , "c10018l").login())
