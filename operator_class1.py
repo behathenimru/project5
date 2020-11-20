@@ -5,9 +5,6 @@ import hashlib
 class Operator:
     def __init__(self, operator_file):
         self.operator_file = operator_file
-        # with open('undertaking_user_pass.csv', 'r') as csv_file :
-        #     reader = csv.reader(csv_file)
-        #     self.reader=reader
 
     def Operator_Login(self, name, password):
         str_hash_opera = password
@@ -21,12 +18,15 @@ class Operator:
             for row in self.reading_operator:
                 if self.name == row[0] and self.password == row[2]:
                     print("operator login was succesful")
+                    return "operator login was succesful"
                 elif self.name == row[0] and self.password != row[2]:
                     print("operator passeord is wrong")
+                    return "operator passeord is wrong"
                 elif self.name != row[0] and self.password == row[2]:
                     print("operator user_name is wrong")
+                    return "operator user_name is wrong"
 
-    def Food_list():
+    def Food_list(self):
         with open('food_list.csv', 'w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(["day", "food number1", "price", "food number2", "price"])
@@ -48,3 +48,5 @@ class Operator:
 
 # obj = Operator('undertaking_user_pass.csv')
 # obj.Operator_Login(input("please enter operator name:\n"), input("please enter operator password:\n"))
+# # obj.Operator_Login("100", "123456ali")
+# obj.Food_list()

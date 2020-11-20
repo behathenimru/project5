@@ -10,4 +10,4 @@ with open('studen_user_pass.csv', 'w', newline='') as file:
         str_hash=random.choice(ch)+str(i-9900000)+random.choice(ch)
         hash_object = hashlib.md5(str_hash.encode())
         print(hash_object.hexdigest())
-        writer.writerow([i,str_hash,hash_object.hexdigest(),1500])
+        writer.writerow([i,str_hash,hash_object.hexdigest(),1500,"","","","","","",""])

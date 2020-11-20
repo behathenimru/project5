@@ -29,14 +29,14 @@ def Operator_log_foodlist():
             print("Access denied\n Wrong username")
 
 
-# operator_run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-obj3 = Operator_log_foodlist()
-with open('food_list.csv', 'r') as foods:
-    food_reader = pd.read_csv(foods)
-    print(food_reader)
+# operator_run
+# obj3 = Operator_log_foodlist()
+# with open('food_list.csv', 'r') as foods:
+#     food_reader = pd.read_csv(foods)
+#     print(food_reader)
 
 
-# _______________________________________________________________________________________________________
+
 def Student_Log():
     """studen login method:studen have two time chance to enter wrong user or pass,
        else he or she couldnot login and if login was succesful this method return
@@ -58,9 +58,8 @@ def Student_Log():
             count += 1
     print("you have tried three times\nyour chance for login finished")
 
-# student run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-
-# obj1 = Student_Log()
-# print(Student(obj1, 'studen_user_pass.csv', "food_list.csv").preview_food_list())
+# student login
+obj1 = Student_Log()
+print(Student(obj1, 'studen_user_pass.csv', "food_list.csv").preview_food_list())
 # print(Student(obj1, 'studen_user_pass.csv', 'food_list.csv').food_reservation())
