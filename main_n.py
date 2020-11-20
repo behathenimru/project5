@@ -1,6 +1,6 @@
-from student_login import Login
+from student_login_n import Login
 from student_class3 import Student
-from operator_class1 import Operator
+from operator_class_n import Operator
 import pandas as pd
 import csv
 
