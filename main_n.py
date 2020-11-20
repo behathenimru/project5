@@ -60,7 +60,7 @@ def Student_Log():
 
 #student run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-obj1=Student_Log() 
+obj1=Student_Log()
 print(type(obj1),obj1)
 if type(obj1)==int: #it is user login permission condition
 #attention: stu is abbreviation of student
