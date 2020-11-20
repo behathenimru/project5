@@ -1,13 +1,15 @@
 from student_login import Login
 from student_class2 import Student
 from operator_class1 import Operator
+import logging
 import pandas as pd
 import csv
-
+import hashlib
 
 
 """def operator_log_foodlist(): operator will login and if his login was successfull he will make food list for one week
 operator have three time chance to enter correct user and pass also"""
+
 
 def Operator_log_foodlist():
     count = 0
@@ -26,15 +28,15 @@ def Operator_log_foodlist():
             count += 1
             print("Access denied\n Wrong username")
 
-#operator_run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# operator_run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 obj3 = Operator_log_foodlist()
 with open('food_list.csv', 'r') as foods:
-     food_reader = pd.read_csv(foods)
-     print(food_reader)
+    food_reader = pd.read_csv(foods)
+    print(food_reader)
 
 
-
-#_______________________________________________________________________________________________________
+# _______________________________________________________________________________________________________
 def Student_Log():
     """studen login method:studen have two time chance to enter wrong user or pass,
        else he or she couldnot login and if login was succesful this method return
@@ -56,11 +58,9 @@ def Student_Log():
             count += 1
     print("you have tried three times\nyour chance for login finished")
 
+# student run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-#student run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-
-obj1=Student_Log()
-print(Student(obj1,'studen_user_pass.csv',"food_list.csv").preview_food_list())
-print(Student(obj1,'studen_user_pass.csv','food_list.csv').food_reservation())
-print(Student(Login("9910021" , "q10021u").login(),'studen_user_pass.csv',"food_list.csv").week_food_info_file())
+# obj1 = Student_Log()
+# print(Student(obj1, 'studen_user_pass.csv', "food_list.csv").preview_food_list())
+# print(Student(obj1, 'studen_user_pass.csv', 'food_list.csv').food_reservation())
