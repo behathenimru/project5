@@ -27,10 +27,10 @@ def Operator_log_foodlist():
             count += 1
             print("Access denied\n Wrong username")
 #operator_run >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-# obj3 = Operator_log_foodlist()
-# with open('food_list.csv', 'r') as foods:
-#      food_reader = pd.read_csv(foods)
-#      print(food_reader)
+obj3 = Operator_log_foodlist()
+with open('food_list.csv', 'r') as foods:
+     food_reader = pd.read_csv(foods)
+     print(food_reader)
 
 
 

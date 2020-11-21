@@ -1,13 +1,12 @@
 import csv
 import hashlib
 
-
+"""this class is for operator,it contain operato_login method and food_list method
+in operator login method we used hash of pass for operator login and also we have a csv file 
+ that contain username and hash of password for two operator its name is undertaking_user_pass"""
 class Operator:
     def __init__(self, operator_file):
         self.operator_file = operator_file
-        # with open('undertaking_user_pass.csv', 'r') as csv_file :
-        #     reader = csv.reader(csv_file)
-        #     self.reader=reader
 
     def Operator_Login(self, name, password):
         str_hash_opera = password
@@ -22,10 +21,11 @@ class Operator:
                 if self.name == row[0] and self.password == row[2]:
                     return "operator login was succesful"
                 elif self.name == row[0] and self.password != row[2]:
-                    return "operator passeord is wrong"
+                    return "operator password is wrong"
                 elif self.name != row[0] and self.password == row[2]:
                     return "operator user_name is wrong"
-
+                elif self.name != row[0] and self.password != row[2]:
+                    continue
     def Food_list(self):
         with open('food_list.csv', 'w', newline='') as file:
             writer = csv.writer(file)
