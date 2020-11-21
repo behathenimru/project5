@@ -4,6 +4,8 @@ import hashlib
 """this class is for operator,it contain operato_login method and food_list method
 in operator login method we used hash of pass for operator login and also we have a csv file 
  that contain username and hash of password for two operator its name is undertaking_user_pass"""
+
+
 class Operator:
     def __init__(self, operator_file):
         self.operator_file = operator_file
@@ -26,6 +28,7 @@ class Operator:
                     return "operator user_name is wrong"
                 elif self.name != row[0] and self.password != row[2]:
                     continue
+
     def Food_list(self):
         with open('food_list.csv', 'w', newline='') as file:
             writer = csv.writer(file)
@@ -44,7 +47,6 @@ class Operator:
                                 , input("enter a food number two for Thursday:"), input("enter a price:")])
             writer.writerow(["Friday", input("enter a food number one for Friday:"), input("enter a price:") \
                                 , input("enter a food number two for Friday:"), input("enter a price:")])
-
 
 # obj = Operator('undertaking_user_pass.csv')
 # obj.Operator_Login(input("please enter operator name:\n"), input("please enter operator password:\n"))
